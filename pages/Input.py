@@ -390,6 +390,8 @@ with col4:
     fill_color="rgba(255, 165, 0, 0.3)",  # Fixed fill color with some opacity
     stroke_width=stroke_width,
     background_color=bg_color,
+    ######## Not showing the download button ###########
+    display_toolbar = False,
     background_image=image if bg_image else None,
     update_streamlit=realtime_update,
     drawing_mode=drawing_mode,
@@ -470,10 +472,6 @@ with col4:
     height=height,
     width=width,
 )
-
-
-
-
 
 # Define the predict_button variable before it is used
 predict_button = False
