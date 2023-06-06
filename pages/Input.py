@@ -252,6 +252,12 @@ def analyze_mask(mask: np.ndarray, stat: str = 'median', n_v: int = 2) -> np.nda
     
     return (np.array(X_filtered), np.array(Y_filtered))
 
+############# Functionalized download button ###################
+@st.cache
+def convert_df(df):
+    # IMPORTANT: Cache the conversion to prevent computation on every rerun
+    return df.to_csv().encode('utf-8')
+
 @st.cache_resource
 def load_model():
     host = "https://ai-schlumberger-eag-consulting.p.datascience.cloud.slb-ds.com"
@@ -638,12 +644,13 @@ def calculate_and_download_values():
     #st.write("Below is dataframe in df")
     #st.write(df)
     # Download the DataFrame as an Excel file
-    return df
+    csv_from_df = convert_df(df)
+    return csv_from_df
 
 
-    @st.cache_data
-    def convert_df(df):
-        return df.to_csv("results.csv", index=False, encoding='utf-8', low_memory=False)
+    # @st.cache_data
+    # def convert_df(df):
+    #     return df.to_csv("results.csv", index=False, encoding='utf-8', low_memory=False)
     
     st.session_state['df'] = df
 
