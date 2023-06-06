@@ -273,7 +273,7 @@ def load_model():
     return model
 
 #Preprocessing Lib End
-
+################ Avoid the warming message ###############
 if 'df' not in st.session_state:
     st.session_state['df'] = ""
 
@@ -639,9 +639,10 @@ def calculate_and_download_values():
     #st.write(df)
     # Download the DataFrame as an Excel file
 
+
     @st.cache_data
     def convert_df(df):
-        return df.to_csv("results.csv", index=False, encoding='utf-8')
+        return df.to_csv("results.csv", index=False, encoding='utf-8', low_memory=False)
     
     st.session_state['df'] = df
 
