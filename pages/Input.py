@@ -274,6 +274,8 @@ def load_model():
 
 #Preprocessing Lib End
 
+if 'df' not in st.session_state:
+    st.session_state['df'] = ""
 
 # Specify canvas parameters in application
 drawing_mode = 'line'
