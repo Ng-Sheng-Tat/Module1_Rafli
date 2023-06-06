@@ -278,11 +278,6 @@ def load_model():
     os.remove(tmp_file_path)
     return model
 
-#Preprocessing Lib End
-################ Avoid the warming message ###############
-if 'df' not in st.session_state:
-    st.session_state['df'] = ""
-
 # Specify canvas parameters in application
 drawing_mode = 'line'
 
@@ -644,15 +639,14 @@ def calculate_and_download_values():
     #st.write("Below is dataframe in df")
     #st.write(df)
     # Download the DataFrame as an Excel file
-    csv_from_df = convert_df(df)
-    return csv_from_df
-
 
     # @st.cache_data
     # def convert_df(df):
     #     return df.to_csv("results.csv", index=False, encoding='utf-8', low_memory=False)
     
-st.session_state['df'] = df
+    st.session_state['df'] = df
+    csv_from_df = convert_df(df)
+    return csv_from_df
 
 st.write("STORED !")
 st.write(st.session_state['df'])
