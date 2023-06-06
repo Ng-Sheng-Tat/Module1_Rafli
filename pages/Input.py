@@ -638,6 +638,7 @@ def calculate_and_download_values():
     #st.write("Below is dataframe in df")
     #st.write(df)
     # Download the DataFrame as an Excel file
+    return df
 
 
     @st.cache_data
@@ -665,8 +666,14 @@ def calculate_and_download_values():
         st.markdown(get_table_download_link(st.session_state['df']), unsafe_allow_html=True)
 
 st.markdown("<h2 style='text-align: left;'>Calculate and Download Values</h2>", unsafe_allow_html=True)
-calculate_button = st.button('Calculate and Download Values', on_click=calculate_and_download_values)
+# calculate_button = st.button('Calculate and Download Values', on_click=calculate_and_download_values)
 
+st.download_button(
+    label="Calculate and Download Value",
+    data=calculate_and_download_values,
+    file_name='digitizeddata.csv',
+    mime='text/csv',
+)
 
 
 
