@@ -274,8 +274,6 @@ def load_model():
 
 #Preprocessing Lib End
 
-
-
 col1, col2 = st.sidebar.columns(2)
 
 # Add sliders to control the positions of the horizontal lines in the first column
@@ -316,7 +314,7 @@ v_line_color_2 = "black"
 bg_color = "#eee"
 
 st.markdown("<h1 style='text-align: left;'>Upload Curve Image</h1>", unsafe_allow_html=True)
-bg_image = st.file_uploader("Upload the Log Curves Images:", type=["png", "jpg"])
+bg_image = st.file_uploader("Upload the Log Curves Images:", type=["png"])
 
 N = 12
 
@@ -326,9 +324,6 @@ width = 800
 height = 800
 
 canvas_resized = False
-
-
-
 
 if bg_image is not None:
     crop_sizes = 32*10
@@ -372,11 +367,11 @@ st.markdown(styles, unsafe_allow_html=True)
 # Add a horizontal line to separate the sections
 st.sidebar.markdown("<hr/>", unsafe_allow_html=True)
 
-# Add a new section with a 6x2 grid of checkboxes
-st.sidebar.markdown("<b><span style='color:black'>Predictions</span></b>", unsafe_allow_html=True)
-cols = st.sidebar.columns(2)
-for i in range(1, 13):
-    cols[(i - 1) % 2].checkbox(f"Prediction {i}", key=f"prediction_{i}")
+# # Add a new section with a 6x2 grid of checkboxes
+# st.sidebar.markdown("<b><span style='color:black'>Predictions</span></b>", unsafe_allow_html=True)
+# cols = st.sidebar.columns(2)
+# for i in range(1, 13):
+#     cols[(i - 1) % 2].checkbox(f"Prediction {i}", key=f"prediction_{i}")
 
 
 # Calculate the y-coordinates of the horizontal lines and the x-coordinates of the vertical lines based on the slider values
@@ -394,6 +389,7 @@ if bg_image is not None:
         fill_color="rgba(255, 165, 0, 0.3)",  # Fixed fill color with some opacity
         stroke_width=stroke_width,
         background_color=bg_color,
+        display_toolbar = False,
         background_image=image if bg_image else None,
         update_streamlit=realtime_update,
         drawing_mode=drawing_mode,
@@ -476,9 +472,6 @@ if bg_image is not None:
     )
 
 
-
-
-
 # Define the predict_button variable before it is used
 predict_button = False
 
@@ -557,14 +550,14 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# Display the images using st.image in a format of Rx3
-cols = st.columns(3)
-for i in range(N):
-    row = i // 3
-    col = i % 3
-    cols[col].markdown(f"## Prediction - {i+1}", unsafe_allow_html=True)
-    cols[col].markdown("<hr style='border:0.5px solid #ccc'/>", unsafe_allow_html=True)
-    cols[col].image(images_list[i])
+# # Display the images using st.image in a format of Rx3
+# cols = st.columns(3)
+# for i in range(N):
+#     row = i // 3
+#     col = i % 3
+#     cols[col].markdown(f"## Prediction - {i+1}", unsafe_allow_html=True)
+#     cols[col].markdown("<hr style='border:0.5px solid #ccc'/>", unsafe_allow_html=True)
+#     cols[col].image(images_list[i])
 
 
 def get_table_download_link(df):
