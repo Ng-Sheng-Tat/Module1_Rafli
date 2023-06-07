@@ -315,10 +315,8 @@ v_line_color_1 = "red"
 v_line_color_2 = "black"
 bg_color = "#eee"
 
-
 st.markdown("<h1 style='text-align: left;'>Upload Curve Image</h1>", unsafe_allow_html=True)
 bg_image = st.file_uploader("Upload the Log Curves Images:", type=["png", "jpg"])
-
 
 N = 12
 
